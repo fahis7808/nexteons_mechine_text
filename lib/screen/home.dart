@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
         builder: (context,data,_) {
           return Scaffold(
             appBar: AppBar(title: Text("Data Table")),
-            body: Column(
+            body:data.dataTableModel.isEmpty ? Center(child: CircularProgressIndicator()) : Column(
               children: [
                 DataTable(
                   columns: [
@@ -45,21 +45,21 @@ class HomePage extends StatelessWidget {
                     ))),
                   ],
 
-                  rows: [
-                    DataRow(cells: [
-                      DataCell(Text(
-                        "Java",
-                        style: AppFont.tableText,
-                      )),
-                      DataCell(Text("35")),
-                      DataCell(Text("Image")),
-                      DataCell(Text("url")),
-                    ])
-                  ],
+                  rows: data.dataTableModel.map((e){
+                    return DataRow(cells: [
+                      DataCell(SizedBox(
+                          width: 50,
+                          child: Text(e.name))),
+                      DataCell(SizedBox(
+                          width: 50,
+                          child: Text(e.uid.toString()))),
+                      DataCell(SizedBox(
+                          width: 50,child: Text(data.docType(e.docType)))),
+                      DataCell(SizedBox(
+                          width: 50,child: Image.network(e.url)))
+                    ]);
+                  }).toList()
                 ),
-                ElevatedButton(onPressed: (){
-                  data.getData();
-                }, child: Text("demo"))
               ],
             ),
           );
