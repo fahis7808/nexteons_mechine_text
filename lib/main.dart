@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nexteons_mechine_text/View/home.dart';
+import 'package:nexteons_mechine_text/screen/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
